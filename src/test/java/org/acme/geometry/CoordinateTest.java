@@ -23,11 +23,16 @@ public class CoordinateTest {
 	}
 	
 	@Test
-	public void testIsEmpty(){
+	public void testIsEmptyTrue(){
 		double x = Double.NaN;
 		double y = Double.NaN;
 		Coordinate c = new Coordinate(x,y);
 		Assert.assertTrue(c.isEmpty());
 	}
 
+	@Test
+	public void testIsEmptyFalse(){
+		Coordinate c = new Coordinate(4.0,6.0);
+		Assert.assertFalse(c.isEmpty());
+	}
 }
