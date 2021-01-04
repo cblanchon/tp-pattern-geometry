@@ -31,5 +31,18 @@ public class LineString implements Geometry {
 	public String getType() {
 		return this.getClass().getName();
 	}
+	
+	@Override
+	public void translate(double dx, double dy) {
+		for (int i=0 ; i < this.getNumPoints() ; i++) {
+			Point currP = this.getPointN(i);
+			double oldX = currP.getCoordinate().getX();
+			double oldY = currP.getCoordinate().getY();
+			currP.getCoordinate().setX(oldX + dx);
+			currP.getCoordinate().setY(oldY + dy);
+			
+		}
+
+	}
 
 }

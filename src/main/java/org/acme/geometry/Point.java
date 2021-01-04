@@ -22,5 +22,13 @@ public class Point implements Geometry {
 	public String getType() {
 		return this.getClass().getName();
 	}
+	
+	@Override
+	public void translate(double dx, double dy) {
+		double oldX = this.coordinate.getX();
+		double oldY = this.coordinate.getY();
+		this.coordinate.setX(oldX + dx);
+		this.coordinate.setY(oldY + dy);
+	}
 
 }
