@@ -9,7 +9,11 @@ public class Point implements Geometry {
 	}
 	
 	public Point(Coordinate coordinate) {
-		this.coordinate = coordinate;
+		if (!this.coordinate.isEmpty()) {
+			this.coordinate = coordinate;
+		}
+		
+
 	}
 	
 	@Override
