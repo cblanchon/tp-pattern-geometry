@@ -12,14 +12,11 @@ public class Point implements Geometry {
 		if (!this.coordinate.isEmpty()) {
 			this.coordinate = coordinate;
 		}
-		
-
 	}
 	
 	@Override
 	public String getType() {
-		// TODO Auto-generated method stub
-		return null;
+		return this.getClass().getName();
 	}
 
 }
