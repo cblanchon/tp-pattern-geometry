@@ -44,5 +44,11 @@ public class LineString implements Geometry {
 		}
 
 	}
+	
+	@Override
+	public LineString clone() {
+		LineString copy = this;
+		return copy;
+	}
 
 }

@@ -30,5 +30,12 @@ public class Point implements Geometry {
 		this.coordinate.setX(oldX + dx);
 		this.coordinate.setY(oldY + dy);
 	}
+	
+	@Override
+	public Point clone() {
+		Point copy = this;
+		return copy;
+	}
+	
 
 }
