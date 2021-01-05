@@ -63,7 +63,7 @@ public class EnveloppeBuilder implements GeometryVisitor{
 	@Override
 	public void visit(LineString l) {
 		for(int i=0; i < l.getNumPoints(); i++) {
-			this.insert(l.getPointN(i).getCoordinate());
+			visit(l.getPointN(i));
 		}
 		
 	}
