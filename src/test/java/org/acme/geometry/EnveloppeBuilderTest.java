@@ -9,6 +9,11 @@ public class EnveloppeBuilderTest {
 	
 	@Test
 	public void testInsert() {
+		
+	}
+
+	@Test
+	public void testBuild() {
 		EnveloppeBuilder builder = new EnveloppeBuilder();
 		builder.insert(new Coordinate(0.0,1.0));
 		builder.insert(new Coordinate(2.0,0.0));
@@ -19,13 +24,9 @@ public class EnveloppeBuilderTest {
 		Coordinate tR = new Coordinate(2.0,3.0);
 		Enveloppe expect = new Enveloppe(bL,tR);
 		
-		Assert.assertEquals(result, expect);
-		
-	}
-
-	@Test
-	public void testBuild() {
-		
-		
+		Assert.assertEquals(result.getXmax(), expect.getXmax(),EPSILON);	
+		Assert.assertEquals(result.getXmin(), expect.getXmin(),EPSILON);
+		Assert.assertEquals(result.getYmax(), expect.getYmax(),EPSILON);
+		Assert.assertEquals(result.getYmin(), expect.getYmin(),EPSILON);
 	}
 }
