@@ -39,9 +39,10 @@ public class Point implements Geometry {
 
 
 	@Override
-	public Enveloppe getEnveloppe() {	
-		Enveloppe enveloppe = new Enveloppe(this.getCoordinate(),this.getCoordinate());
-		return enveloppe;
+	public Enveloppe getEnveloppe() {
+		EnveloppeBuilder builder = new EnveloppeBuilder();
+		builder.insert(this.coordinate);
+		return builder.build();
 	}
 	
 

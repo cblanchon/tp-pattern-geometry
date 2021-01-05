@@ -57,11 +57,10 @@ public class LineString implements Geometry {
 	@Override
 	public Enveloppe getEnveloppe() {
 		EnveloppeBuilder builder = new EnveloppeBuilder();
-		for (Point point : this.points) {
-			builder.insert(point.getCoordinate());
+		for(int i = 0; i < this.getNumPoints(); i++) {
+			builder.insert(this.getPointN(i).getCoordinate());
 		}
-		Enveloppe result = builder.build();
-		return result;
+		return builder.build();
 	}
 
 }

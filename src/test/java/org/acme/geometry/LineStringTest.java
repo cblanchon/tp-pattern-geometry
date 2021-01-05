@@ -79,4 +79,16 @@ public class LineStringTest {
 		Assert.assertNotSame(oa.getPointN(1), cloneOA.getPointN(1));
 	}
 	
+	
+	
+	@Test
+	public void testGetEnveloppe() {
+		LineString l = SampleFactory.createLineStringOA();
+		Enveloppe e = l.getEnveloppe();
+		Assert.assertEquals(0.0, e.getXmin(),EPSILON);
+		Assert.assertEquals(4.0, e.getXmax(),EPSILON);
+		Assert.assertEquals(0.0, e.getYmin(),EPSILON);
+		Assert.assertEquals(5.0, e.getYmax(),EPSILON);
+	}
+	
 }
