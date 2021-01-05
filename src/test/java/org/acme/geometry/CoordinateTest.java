@@ -18,6 +18,7 @@ public class CoordinateTest {
 	@Test
 	public void testXYConstructor(){
 		Coordinate c = new Coordinate(4.0,6.0);
+		Assert.assertFalse(c.isEmpty());
 		Assert.assertEquals(4.0, c.getX(), EPSILON);
 		Assert.assertEquals(6.0, c.getY(), EPSILON);
 	}

@@ -33,8 +33,7 @@ public class Point implements Geometry {
 	
 	@Override
 	public Point clone() {
-		Point copy = this;
-		return copy;
+		return new Point(coordinate);
 	}
 	
 

@@ -2,6 +2,7 @@ package org.acme.geometry;
 
 import org.junit.Assert;
 import org.junit.Test;
+import org.mockito.Mockito;
 
 public class PointTest {
 	
@@ -16,14 +17,14 @@ public class PointTest {
 		Assert.assertEquals(nan, c.getY(), EPSILON);
 	}
 	
-/*	@Test
-	public void testCoordConstructorNotEmpty(){
-		Coordinate c = new Coordinate(0.3, 0.2);
-		Point p = new Point(c);
-		Coordinate pcoords = p.getCoordinate();
-		Assert.assertEquals(c, pcoords);
+	@Test
+	
+public void testIsEmpty() {
+		Coordinate c = Mockito.mock(Coordinate.class);
+		Mockito.when(c.isEmpty()).thenReturn(true);
+		Point g = new Point(c);
+		Assert.assertTrue(g.isEmpty());
 	}
-*/
 	
 }
 

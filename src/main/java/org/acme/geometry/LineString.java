@@ -1,5 +1,6 @@
 package org.acme.geometry;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class LineString implements Geometry {
@@ -8,14 +9,12 @@ public class LineString implements Geometry {
 	
 	
 	public LineString() {
-		List<Point> points = null;
-		points.add(new Point());
-		points.add(new Point());
-		this.points = points;
+		this.points = new ArrayList<>();;
 		
 	}
 	
 	public LineString(List<Point> points) {
+		assert (points!=null);
 		this.points = points;
 	}
 	
@@ -47,8 +46,11 @@ public class LineString implements Geometry {
 	
 	@Override
 	public LineString clone() {
-		LineString copy = this;
-		return copy;
+		List<Point> newpoints = new ArrayList<>(getNumPoints());
+		for (Point point : points) {
+			newpoints.add(point);
+		}
+		return;
 	}
 
 }

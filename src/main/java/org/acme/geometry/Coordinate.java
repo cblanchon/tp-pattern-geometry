@@ -31,7 +31,7 @@ public class Coordinate {
 	}
 	
 	public Boolean isEmpty() {
-		if (Double.isNaN(this.x) && Double.isNaN(this.y)) {
+		if (Double.isNaN(this.x) || Double.isNaN(this.y)) {
 			return true;
 		}
 		return false;	
