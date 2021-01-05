@@ -4,37 +4,37 @@ public class WktWriter {
 	public static final String LINE = System.getProperty("line.separator");
 	
 	public String write(Geometry geom) {
-		String wkt = "";
+		String wktString = "";
 		if ( geom instanceof Point ){
 		    Point point = (Point)geom;
-		    wkt += point.getType().toUpperCase();
+		    wktString += point.getType().toUpperCase();
 		    if(point.isEmpty()) {
-		    	wkt += " EMPTY";
+		    	wktString += " EMPTY";
 		    }else {
-		    	wkt += "("+Double.toString(point.getCoordinate().getX()) +
+		    	wktString += "("+Double.toString(point.getCoordinate().getX()) +
 		    			" "+Double.toString(point.getCoordinate().getY())+")";
 		    }
 		}else if ( geom instanceof LineString ){
 		    LineString lineString = (LineString)geom;
-		    wkt += lineString.getType().toUpperCase();
+		    wktString += lineString.getType().toUpperCase();
 		    if(lineString.isEmpty()) {
-		    	wkt += " EMPTY";
+		    	wktString += " EMPTY";
 		    }else {
-		    	wkt += "(";
+		    	wktString += "(";
 		    	for(int i=0; i < lineString.getNumPoints(); i++) {
 		    		Point p = lineString.getPointN(i);
-    				wkt += Double.toString(p.getCoordinate().getX()) +
+    				wktString += Double.toString(p.getCoordinate().getX()) +
 	    			" "+Double.toString(p.getCoordinate().getY());
     				if(i != lineString.getNumPoints() - 1) {
-    					wkt += ",";
+    					wktString += ",";
     				}
 		    	}
-		    	wkt += ")";
+		    	wktString += ")";
 		    }
 		}else{
 		    throw new RuntimeException("Geometry type not supported");
 		}
 		
-		return wkt;
+		return wktString;
 	}
 }
