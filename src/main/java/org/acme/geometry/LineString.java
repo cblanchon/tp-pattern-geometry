@@ -50,7 +50,23 @@ public class LineString implements Geometry {
 		for (Point point : points) {
 			newpoints.add(point);
 		}
-		return;
+		return null;
+	}
+
+	@Override
+	public Boolean isEmpty() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Enveloppe getEnveloppe() {
+		EnveloppeBuilder builder = new EnveloppeBuilder();
+		for (Point point : this.points) {
+			builder.insert(point.getCoordinate());
+		}
+		Enveloppe result = builder.build();
+		return result;
 	}
 
 }

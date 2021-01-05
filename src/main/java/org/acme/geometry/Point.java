@@ -35,6 +35,18 @@ public class Point implements Geometry {
 	public Point clone() {
 		return new Point(coordinate);
 	}
+
+	@Override
+	public Boolean isEmpty() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Enveloppe getEnveloppe() {	
+		Enveloppe enveloppe = new Enveloppe(this.getCoordinate(),this.getCoordinate());
+		return enveloppe;
+	}
 	
 
 }
