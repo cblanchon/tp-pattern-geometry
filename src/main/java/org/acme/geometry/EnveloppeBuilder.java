@@ -1,30 +1,55 @@
 package org.acme.geometry;
 
-import java.util.ArrayList;
-import java.util.Collections;
-
 public class EnveloppeBuilder {
 	
-	private ArrayList<Double> listX;
-	private ArrayList<Double> listY;
+	private Enveloppe enveloppe;
+	
+	public EnveloppeBuilder() {
+		this.enveloppe = new Enveloppe();
+	}
+	
 	
 	public void insert(Coordinate coordinate) {
-		listX.add(coordinate.getX());
-		listY.add(coordinate.getY());
-	}
-	
-	public Enveloppe build() {
-		double xmax = Collections.max(listX);
-		double xmin = Collections.min(listX);
-		
-		double ymax = Collections.max(listY);
-		double ymin = Collections.min(listY);
-		
-		Coordinate bottomLeft = new Coordinate(xmin,ymin);
-		Coordinate topRight = new Coordinate(xmax,ymax);
-		
-		Enveloppe enveloppe = new Enveloppe(bottomLeft, topRight);
-		return enveloppe;
+		assert(coordinate != null);
+		if(this.enveloppe.isEmpty()) {
+			this.enveloppe = new Enveloppe(coordinate, coordinate);
+		}else {
+			if(coordinate.getX() < this.enveloppe.getXmin() && coordinate.getY() < this.enveloppe.getYmin()) {
+				this.enveloppe = new Enveloppe(
+						coordinate, 
+						new Coordinate(this.enveloppe.getXmax(), this.enveloppe.getYmax()));
+			}
+			if(coordinate.getX() < this.enveloppe.getXmin() && coordinate.getY() > this.enveloppe.getYmin()) {
+				this.enveloppe = new Enveloppe(
+						new Coordinate(coordinate.getX(), this.enveloppe.getYmin()), 
+						new Coordinate(this.enveloppe.getXmax(), this.enveloppe.getYmax()));
+			}
+			if(coordinate.getX() > this.enveloppe.getXmin() && coordinate.getY() < this.enveloppe.getYmin()) {
+				this.enveloppe = new Enveloppe(
+						new Coordinate(this.enveloppe.getXmin(), coordinate.getY()), 
+						new Coordinate(this.enveloppe.getXmax(), this.enveloppe.getYmax()));
+			}
+			
+			if(coordinate.getX() > this.enveloppe.getXmax() && coordinate.getY() > this.enveloppe.getYmax()) {
+				this.enveloppe = new Enveloppe(
+						new Coordinate(this.enveloppe.getXmin(), this.enveloppe.getYmin()), 
+						coordinate);
+			}
+			if(coordinate.getX() > this.enveloppe.getXmax() && coordinate.getY() < this.enveloppe.getYmax()) {
+				this.enveloppe = new Enveloppe(
+						new Coordinate(this.enveloppe.getXmin(), this.enveloppe.getYmin()), 
+						new Coordinate(coordinate.getX(), this.enveloppe.getYmax()));
+			}
+			if(coordinate.getX() < this.enveloppe.getXmax() && coordinate.getY() > this.enveloppe.getYmax()) {
+				this.enveloppe = new Enveloppe(
+						new Coordinate(this.enveloppe.getXmin(), this.enveloppe.getYmin()), 
+						new Coordinate(this.enveloppe.getXmax(), coordinate.getY()));
+			}
+		}
 	}
 
+	
+	public Enveloppe build() {
+		return this.enveloppe;
+	}
 }

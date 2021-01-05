@@ -5,19 +5,18 @@ public class Enveloppe {
 	private Coordinate topRight;
 	
 	public Enveloppe() {
-		
+		this.bottomLeft = new Coordinate();
+		this.topRight = new Coordinate();
 	}
 	
 	public Enveloppe(Coordinate bottomLeft, Coordinate topRight) {
+		assert(bottomLeft != null && topRight != null);
 		this.bottomLeft = bottomLeft;
 		this.topRight = topRight;
 	}
 	
-	public Boolean isEmpty() {
-		if (Double.isNaN(this.bottomLeft.getX()) || Double.isNaN(this.bottomLeft.getY()) || Double.isNaN(this.topRight.getX()) ||Double.isNaN(this.topRight.getY())) {
-			return true;
-		}
-		return false;	
+	public boolean isEmpty() {
+		return this.bottomLeft.isEmpty() || this.topRight.isEmpty();	
 	}
 	
 	public double getXmax() {
