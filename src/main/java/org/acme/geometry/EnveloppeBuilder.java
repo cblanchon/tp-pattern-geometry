@@ -1,6 +1,6 @@
 package org.acme.geometry;
 
-public class EnveloppeBuilder {
+public class EnveloppeBuilder implements GeometryVisitor{
 	
 	private Enveloppe enveloppe;
 	
@@ -51,5 +51,20 @@ public class EnveloppeBuilder {
 	
 	public Enveloppe build() {
 		return this.enveloppe;
+	}
+	
+	
+	@Override
+	public void visit(Point p) {
+		this.insert(p.getCoordinate());
+		
+	}
+	
+	@Override
+	public void visit(LineString l) {
+		for(int i=0; i < l.getNumPoints(); i++) {
+			this.insert(l.getPointN(i).getCoordinate());
+		}
+		
 	}
 }
