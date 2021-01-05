@@ -5,11 +5,13 @@ import java.util.List;
 
 public class LineString implements Geometry {
 	
+	public static final String TYPE = "LineString";
+	
 	private List<Point> points;
 	
 	
 	public LineString() {
-		this.points = new ArrayList<>();;
+		this.points = new ArrayList<>();
 		
 	}
 	
@@ -28,35 +30,28 @@ public class LineString implements Geometry {
 
 	@Override
 	public String getType() {
-		return this.getClass().getName();
+		return TYPE;
 	}
 	
 	@Override
 	public void translate(double dx, double dy) {
-		for (int i=0 ; i < this.getNumPoints() ; i++) {
-			Point currP = this.getPointN(i);
-			double oldX = currP.getCoordinate().getX();
-			double oldY = currP.getCoordinate().getY();
-			currP.getCoordinate().setX(oldX + dx);
-			currP.getCoordinate().setY(oldY + dy);
-			
+		for (Point point : points) {
+			point.translate(dx, dy);
 		}
-
 	}
 	
 	@Override
 	public LineString clone() {
-		List<Point> newpoints = new ArrayList<>(getNumPoints());
+		List<Point> newPoints = new ArrayList<>(getNumPoints());
 		for (Point point : points) {
-			newpoints.add(point);
+			newPoints.add(point.clone());
 		}
-		return null;
+		return new LineString(newPoints);
 	}
 
 	@Override
-	public Boolean isEmpty() {
-		// TODO Auto-generated method stub
-		return null;
+	public boolean isEmpty() {
+		return this.points.size() == 0;
 	}
 
 	@Override

@@ -17,13 +17,35 @@ public class PointTest {
 		Assert.assertEquals(nan, c.getY(), EPSILON);
 	}
 	
-	@Test
+	@Test 
+	public void testGetType() {
+		Point p = new Point();
+		Assert.assertEquals("Point", p.getType());
+	}
 	
-public void testIsEmpty() {
+	@Test
+	public void testIsEmpty() {
 		Coordinate c = Mockito.mock(Coordinate.class);
 		Mockito.when(c.isEmpty()).thenReturn(true);
-		Point g = new Point(c);
-		Assert.assertTrue(g.isEmpty());
+		Point p = new Point(c);
+		Assert.assertTrue(p.isEmpty());
+	}
+	
+	
+	@Test
+	public void testTranslate() {
+		Point p = new Point(new Coordinate(4.0, 5.0));
+		p.translate(2.0, 3.0);
+		Assert.assertEquals(6.0, p.getCoordinate().getX(), EPSILON);
+		Assert.assertEquals(8.0, p.getCoordinate().getY(), EPSILON);
+	}
+	
+	@Test
+	public void testClone() {
+		Point p = new Point(new Coordinate(4.0, 5.0));
+		Point copy = p.clone();
+		Assert.assertNotSame(p, copy);
+		Assert.assertSame(p.getCoordinate(), copy.getCoordinate());
 	}
 	
 }

@@ -1,6 +1,7 @@
 package org.acme.geometry;
 
 public class Point implements Geometry {
+	public static final String TYPE = "Point";
 
 	private Coordinate coordinate;
 	
@@ -9,9 +10,7 @@ public class Point implements Geometry {
 	}
 	
 	public Point(Coordinate coordinate) {
-		if (!this.coordinate.isEmpty()) {
 			this.coordinate = coordinate;
-		}
 	}
 	
 	public Coordinate getCoordinate() {
@@ -20,15 +19,17 @@ public class Point implements Geometry {
 	
 	@Override
 	public String getType() {
-		return this.getClass().getName();
+		return TYPE;
+	}
+	
+	@Override
+	public boolean isEmpty() {
+		return this.coordinate.isEmpty();
 	}
 	
 	@Override
 	public void translate(double dx, double dy) {
-		double oldX = this.coordinate.getX();
-		double oldY = this.coordinate.getY();
-		this.coordinate.setX(oldX + dx);
-		this.coordinate.setY(oldY + dy);
+		this.coordinate = new Coordinate(this.coordinate.getX() + dx, this.coordinate.getY() + dy);		
 	}
 	
 	@Override
@@ -36,11 +37,6 @@ public class Point implements Geometry {
 		return new Point(coordinate);
 	}
 
-	@Override
-	public Boolean isEmpty() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 	@Override
 	public Enveloppe getEnveloppe() {	
