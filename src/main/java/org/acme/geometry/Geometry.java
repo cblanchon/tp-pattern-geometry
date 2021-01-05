@@ -7,5 +7,6 @@ public interface Geometry {
 	public Geometry clone();
 	public boolean isEmpty();
 	public Enveloppe getEnveloppe();
+	public void accept(GeometryVisitor visitor);
 
 }
