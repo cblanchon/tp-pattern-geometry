@@ -52,11 +52,12 @@ public class PointTest {
 	public void testGetEnveloppe() {
 		Point p = SampleFactory.createPointA();
 		Enveloppe e = p.getEnveloppe();
-		Assert.assertEquals(0.0, e.getXmin(),EPSILON);
+		Assert.assertEquals(4.0, e.getXmin(),EPSILON);
 		Assert.assertEquals(4.0, e.getXmax(),EPSILON);
-		Assert.assertEquals(0.0, e.getYmin(),EPSILON);
+		Assert.assertEquals(5.0, e.getYmin(),EPSILON);
 		Assert.assertEquals(5.0, e.getYmax(),EPSILON);
 	}
+	
 	
 }
 

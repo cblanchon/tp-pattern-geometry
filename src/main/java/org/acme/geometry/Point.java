@@ -10,7 +10,8 @@ public class Point implements Geometry {
 	}
 	
 	public Point(Coordinate coordinate) {
-			this.coordinate = coordinate;
+		assert(coordinate != null);
+		this.coordinate = coordinate;
 	}
 	
 	public Coordinate getCoordinate() {
