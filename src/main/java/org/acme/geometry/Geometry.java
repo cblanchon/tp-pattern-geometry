@@ -8,5 +8,6 @@ public interface Geometry {
 	public boolean isEmpty();
 	public Enveloppe getEnveloppe();
 	public void accept(GeometryVisitor visitor);
+	public void addListener(GeometryListener listener);
 
 }

@@ -68,4 +68,5 @@ public class LineString  extends AbstractGeometry implements Geometry {
 		visitor.visit(this);
 	}
 
+
 }

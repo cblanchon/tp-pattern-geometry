@@ -27,4 +27,15 @@ public class GeometryWithCachedEnveloppeTest {
 		g = new GeometryWithCachedEnveloppe(g);
 		Assert.assertFalse(g.isEmpty());
 	}
+	
+	
+	@Test
+	public void testObserver() {
+		Geometry g = SampleFactory.createPointA();
+		g = new GeometryWithCachedEnveloppe(g);
+		Enveloppe e1 = g.getEnveloppe();
+		g.translate(4.0, -5.0);
+		Enveloppe e2 = g.getEnveloppe();
+		Assert.assertNotSame(e1, e2);
+	}
 }
